@@ -209,6 +209,10 @@ if __name__ == "__main__":
             count += 1
         print("Your Score: %.3f" % (sum_re_pins/count))
     else:
+        env = CircuitEnv()
+        agent = QAgent(env, alpha=args.alpha, gamma=args.gamma, eps=args.eps)
+        agent.train(episodes=args.episodes) 
+
         if not args.gui:
             agent.train(episodes=args.episodes, callback=ascii_state_graph)
             agent.test()
